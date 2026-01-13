@@ -486,8 +486,12 @@ function App() {
           <video
             autoPlay
             playsInline
+            muted={false}
             ref={(video) => {
-              if (video) video.srcObject = remoteStream;
+              if (video) {
+                video.srcObject = remoteStream;
+                video.volume = 1.0;
+              }
             }}
             style={{ width: "100%", maxWidth: "800px", border: "1px solid #ccc" }}
           />
