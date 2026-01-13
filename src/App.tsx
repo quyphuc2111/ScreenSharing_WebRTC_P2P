@@ -387,7 +387,7 @@ function App() {
   const sendMessage = () => {
     // Send to all connected data channels
     let sent = false;
-    for (const [userId, dc] of dataChannels.current.entries()) {
+    for (const [, dc] of dataChannels.current.entries()) {
       if (dc.readyState === "open") {
         const payload = { type: "chat", content: messageInput };
         dc.send(JSON.stringify(payload));
@@ -403,7 +403,7 @@ function App() {
   const sendFile = async (file: File) => {
     // Find an open data channel
     let openChannel: RTCDataChannel | null = null;
-    for (const [userId, dc] of dataChannels.current.entries()) {
+    for (const [, dc] of dataChannels.current.entries()) {
       if (dc.readyState === "open") {
         openChannel = dc;
         break;
